@@ -398,7 +398,7 @@ def print_barcode_hist(barcode_dist, adapter_dist, total_reads):
     for key, value in six.iteritems(barcode_dist):
         if key != "none":
             barcodes_detected += value
-    logging.info("Barcodes detected in %d of %d adapters" % (barcodes_detected, total_reads))
+    logging.info("Barcodes detected in %d of %d adapters" % (barcodes_detected, adapters_detected))
     for bcid in sorted(barcode_dist):
         perc = barcode_dist[bcid] * 100.0 / total_reads
         logging.info("%15s %6d: | %20s | %6s %%" % (bcid, barcode_dist[bcid],
