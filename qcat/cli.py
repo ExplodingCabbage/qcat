@@ -530,8 +530,9 @@ def qcat_cli(reads_fq, kit, mode, nobatch, out,
                 continue
 
             # Record which adapter/barcode was found
-            barcode_found(barcode_dist, result['barcode'])
             adapter_found(adapter_dist, result['adapter'])
+            if result['adapter']:
+                barcode_found(barcode_dist, result['barcode'])
 
             # Write tsv result file
             write_multiplexing_result(result,
