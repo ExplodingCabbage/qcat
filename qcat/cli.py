@@ -400,9 +400,14 @@ def print_barcode_hist(barcode_dist, adapter_dist, total_reads):
             barcodes_detected += value
     logging.info("Barcodes detected in %d of %d adapters" % (barcodes_detected, adapters_detected))
     for bcid in sorted(barcode_dist):
-        perc = barcode_dist[bcid] * 100.0 / total_reads
-        logging.info("%15s %6d: | %20s | %6s %%" % (bcid, barcode_dist[bcid],
-                                    int(perc / 5) * "#", "{:.2f}".format(perc)))
+        perc = barcode_dist[bcid] * 100.0 / adapters_detected
+        total_perc = barcode_dist[bcid] * 100.0 / total_reads
+        logging.info("%15s %6d: | %20s | %6s %% (%s%% of all reads)" % (
+                         bcid,
+                         barcode_dist[bcid],
+                         int(perc / 5) * "#",
+                         "{:.2f}".format(perc),
+                         "{:.2f}".format(total_perc)))
 
 
 def write_multiplexing_result(barcode_dict, comment, name, sequence, tsv):
